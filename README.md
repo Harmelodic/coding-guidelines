@@ -36,12 +36,11 @@ Good names convey information to developers. Poor names convey little to no info
 Variables contain things. A variable's name should convey to the developer what sort of thing is stored in that variable.
 
 This usually means that you want the variable name to be long enough to convey to the developer what thing exists, but concise enough to make the code quick to read.
+Too long and the developer is reading a book, too short and they're reading algebra. We want neither. We want coherant code.
 
-Unnecessary lengthening can result in a developer spending more time reading than thinking about function of the code, but unnecessary shortening results in a lack of conveyance in what is happening.
+If in doubt, opt for a clearer, verbose name over a obscure, short one. This allows for developers who are new the codebase (or even programming language) to more easily understand what is going on.
 
-If in doubt, opt for a clearer, verbose name over a obscure, short one. This allows for developers who are new the codebase, or even programming language, to gain insight & understanding quicker.
-
-Never use single or abbreviated variable name, unless it's an index in an for-loop.
+Never use single or abbreviated variable name, unless it's an index in an for-loop. Even then, many modern languages have alternative iteration choices where the index is unnecessary (e.g. `forEach(...)`, `for in`) .
 
 In cases where the you're storing data that has units, either ensure the variable is using a type that has units as part of the type, or put the units in the variable name.
 
