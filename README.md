@@ -9,7 +9,6 @@ A set of language-agnostic coding guidelines.
   - Functions / Methods
   - Classes / Structures
   - Application / Service naming
-  - Mention DDD here.
 - Splitting code
   - Package structure
   - File structure
@@ -33,9 +32,12 @@ A set of language-agnostic coding guidelines.
 
 Good names convey information to developers. Poor names convey little to no information, or worse, can mislead developers.
 
+I quite like Domain-Driven Design. To summarise poorly, we should name things according to the real thing they represent. Representing a car? Call it a car. Open an bank account? Don't "create" it, open it.  
+That way, everyone's on the same page with what process is happening, and new developers with no knowledge can understand both the product & technical context in the same way.
+
 ### Variables
 
-Variables contain things. A variable's name should convey to the developer what sort of thing is stored in that variable.
+A variable's name should convey to the developer what sort of thing is stored in that variable.
 
 This usually means that you want the variable name to be long enough to convey to the developer what thing exists, but concise enough to make the code quick to read.
 Too long and the developer is reading a book, too short and they're reading algebra. We want neither. We want coherant code.
@@ -49,8 +51,9 @@ In cases where the you're storing data that has units, either ensure the variabl
 I have no solid opinion on whether acronyms should be capitalised in variables names, other than a simple: "Do what reads better."
 
 ```
-f.read(); // poor
-file.read(); // better
+f.readAll(); // poor
+file.readAll(); // okay
+files
 
 int wait; // poor
 int waitSeconds; // better
