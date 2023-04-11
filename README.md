@@ -7,7 +7,7 @@ A set of language-agnostic coding guidelines.
 - [Naming Things](#Naming-things)
   - [Variables](#Variables)
 
-## Naming things
+## Naming things
 
 Good names convey information to developers. Poor names convey little to no information, or worse, can mislead developers.
 
