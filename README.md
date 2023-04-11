@@ -8,6 +8,8 @@ Topics to cover:
   - Variables
   - Functions / Methods
   - Classes / Structures
+  - Application / Service naming
+  - Mention DDD here.
 - Splitting code
   - Package structure
   - File structure
