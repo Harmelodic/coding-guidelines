@@ -17,15 +17,17 @@ A set of language-agnostic coding guidelines.
   - When to break into separate services / applications
 - Patterns & Anti-Patterns
   - Dependency Injection
-  - Constructor vs Builder
-  - Immutable record objects
-  - etc.
+  - Layers
+  - Constructor vs. Builder
+  - Immutable vs. Mutable
+  - Composition over inheritance
 - Testing
   - Why you should do it
   - Don't monkey-patch
 - Indentation
   - Tabs vs. Spaces
 - Comments / Code-clarity
+- My preferences
 
 ## Naming things
 
@@ -40,7 +42,7 @@ Too long and the developer is reading a book, too short and they're reading alge
 
 If in doubt, opt for a clearer, verbose name over a obscure, short one. This allows for developers who are new the codebase (or even programming language) to more easily understand what is going on.
 
-Never use single or abbreviated variable name, unless it's an index in an for-loop. Even then, many modern languages have alternative iteration choices where the index is unnecessary (e.g. `forEach(...)`, `for in`) .
+Never use abbreviated variable names (e.g. `b`, `fr`, `svc`), unless it's an index in an for-loop. Even then, many modern languages have alternative iteration choices where the index is unnecessary (e.g. `forEach(...)`, `for ... in`).
 
 In cases where the you're storing data that has units, either ensure the variable is using a type that has units as part of the type, or put the units in the variable name.
 
