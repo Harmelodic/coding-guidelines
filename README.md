@@ -87,13 +87,13 @@ function sumDigs(int number): int {} // poor
 function sumOfDigits(int number): int {} // good
 function summationOfIndividualDigits(int number): int {} // too much
 
-
 function processTransaction(Transaction transaction): void {} // poor
 function process(Transaction transaction): void {} // good
 
-list.bubbleSort(); // poor
+list.quicksort(); // poor
 list.sort(); // good
-list.sort(SortingAlgorithm.BUBBLE); // also good, though don't use bubble sorts.
+list.sort(SortingAlgorithm.QUICKSORT); // good, given it is supported
+list.sort(() => {...}); // good, given it is supported
 ```
 
 ---
