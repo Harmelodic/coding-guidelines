@@ -45,13 +45,13 @@ Many names can be fancy or fun, but eventually someone else will need to underst
 
 Variables store things. A variable's name should convey to the developer what sort of thing is stored in that variable.
 
-Never use abbreviated variable names (e.g. `b`, `fr`, `svc`), unless it's an index in an for-loop. Even then, many modern languages have alternative iteration choices where the index is unnecessary (e.g. `forEach(...)`, `for ... in`).
+Never use abbreviated variable names (e.g. `b`, `fr`, `svc`), unless it's an index in an for-loop. Even then, many modern languages have alternative iteration choices where the index is unnecessary (e.g. `forEach(...)` and `for ... in`).
 
 In cases where the you're storing data that has units, either ensure the variable is using a type that has units as part of the type, or put the units in the variable name.
 
 I have no solid opinion on whether acronyms should be capitalised in variables names, other than a simple: "Do what reads better."
 
-```
+```java
 f.readAll(); // poor
 file.readAll(); // okay
 clearingFile.readAll(); // good
@@ -82,18 +82,18 @@ If the function takes a parameter of a particular type, you probably don't need 
 
 Avoid irrelevant jargon - e.g. `curry()` (Sorry, functional programmers/mathematicians).
 
-```
-function sumDigs(int number): int {} // poor
-function sumOfDigits(int number): int {} // good
-function summationOfIndividualDigits(int number): int {} // too much
+```java
+int sumDigs(int number) {} // poor
+int sumOfDigits(int number) {} // good
+int summationOfIndividualDigits(int number): int {} // too much
 
-function processTransaction(Transaction transaction): void {} // poor
-function process(Transaction transaction): void {} // good
+void processTransaction(Transaction transaction) {} // poor
+void process(Transaction transaction) {} // good
 
 list.quicksort(); // poor
 list.sort(); // good
 list.sort(SortingAlgorithm.QUICKSORT); // good, given it is supported
-list.sort(() => {...}); // good, given it is supported
+list.sort(() -> {...}); // good, given it is supported
 ```
 
 ---
