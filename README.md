@@ -113,6 +113,66 @@ list.sort(() -> {...}); // good, given it is supported
 
 ### Classes and structures
 
+Classes, structures, structs (hereafter: "classes") define blueprints for how you may want to structure a data
+together. Depending on the language, these classes can also contain "methods", which provide functionality relating
+to the class (see: [Object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming)).
+
+Classes should come in two varieties: Data classes, and Application classes (if doing OOP).
+
+Data classes are, by their name, classes which define a data structure, and should be named after the structure of data
+they represent, as a singular. If that data structure exists in the real world (outside of code) then opt to name it
+that to further a Ubiquitous Language.  
+Depending on the language, class names can have different requirement for casings, but general if
+given the option: opt for making class names in PascalCase.
+If the language offers an option for handling data classes, (Java Records, Python dataclasses, Kotlin data classes,
+etc.), then use it - it will make usability of the code much more consistent.
+
+If you're using Java, avoid Lombok and use Java Records.
+
+```java
+// Java
+record Customer() {}
+```
+
+```kotlin
+// Kotlin
+data class Account {}
+```
+
+```python
+# Python
+@dataclass
+class ApplicationForm:
+```
+
+Application classes, in OOP, would be classes that perform functionality. These often don't contain data themselves, but
+instead contain references to other Application classes (through dependency injection). Exceptions to this are
+applicable, e.g. When you're using
+the [MVVM application architecture](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel).  
+Application classes should be named after their functionality, as a Role, in the singular.
+
+Concern can be had about the length of names here, and many developers will complain of too much verbosity, especially
+in languages like Java. However, too short or vague names here can obscure or hide information that the developer may or
+should have when developing on the code. If in doubt, opt for a more verbose name than a less verbose one to ensure that
+developers new to the codebase can acquire all the necessary information they need to understand the code.
+
+Assuming your using some sort of interface-class relationship in your OOP code, your interface should be named clearly,
+and the class should then be named relating more to the implementation of the interface.
+
+If you're only implementing a single class implementing the interface, the interface can be omitted and the class can be
+named as whatever the interface was going to be called, as your class and method signatures effectively become your
+interface, and the contents of the class & methods become your implementation.
+
+```java
+class WikipediaApiClient {}
+
+class ApplicationFormValidator {}
+
+interface CustomerRepository {}
+class SQLCustomerRepository implements CustomerRepository {}
+class NoSQLCustomerRepository implements CustomerRepository {}
+```
+
 ---
 
 Thanks for reading.
