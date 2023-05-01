@@ -9,11 +9,11 @@ A set of language-agnostic coding guidelines.
     - [Functions and methods](#functions-and-methods)
     - [Classes and Structures](#classes-and-structures)
     - [Applications](#applications)
-- Splitting code
-    - Package structure
-    - File structure
-    - When to break into libraries
-    - When to break into separate services / applications
+- [Splitting code](#splitting-code)
+    - [File structure](#file-structure)
+    - [Package structure](#package-structure)
+    - [Breaking into separate projects](#breaking-into-separate-projects)
+    - [Creating libraries](#creating-libraries)
 - Patterns & Anti-Patterns
     - Dependency Injection
     - Layers
@@ -202,6 +202,56 @@ Application names should be along the lines of:
 
 Just looking at those application names, you get the feel of how the system is split up, and what each application is
 doing, right? That's a sign your naming your applications well.
+
+## Splitting code
+
+Keeping all your code in one file can be good for little scripts or very small programs, but code will eventually reach
+the point where it is much more maintainable to have the code organised into multiple files, packages, or even projects.
+
+Never have a file/package/project named "utils" or "utilities". If this feels appropriate, code is either being split or
+named incorrectly.
+
+### File structure
+
+Split code into components. One component per file.    
+This does not have to be OOP-styled, assuming the codebase/language doesn't work with OOP principles, but breaking
+applications up into components and layers delegates responsibility across the codebase and increases maintainability.
+
+### Package structure
+
+Package by feature, not by layer.  
+This increases the decoupling and modularity of the project, by isolating features and allowing developers to work
+within a specific context when developing on code.  
+Conversely, packaging by layer simply identifies the different patterns and components of a project which, while
+helpful for developers to know, obscures the feature-offering of the project and dependencies between layers. Since code
+should already be split into files corresponding to layers, a package containing
+
+### Breaking into separate projects
+
+Assuming adherence to the "package by feature" principle, splitting a project into separate projects should feel
+natural.
+
+Some common triggers for a project split are:
+
+- When a package's maintenance has become significantly cumbersome that it warrants its own project lifecycle.
+- When the non-functional requirements on functionality have increased - e.g. redundancy, scalability, etc.
+- When the project has become too much to "keep in your head".
+- When the functionality/API of a package is used by more than just containing project.
+
+### Creating libraries
+
+Libraries form when multiple projects require common functionality, and it would be more efficient to reduce
+code-reuse than duplicate code
+
+Before a library forms, code duplication is natural and perfectly acceptable. A library/package to prevent
+code-duplication should be formed when the code is being duplicated for the third+ time, and it is suspected that
+duplication would happen again.
+
+Libraries shouldn't contain common _product_-functionality, as applications fulfil that. Libraries should exist to
+reduce complexity in the codebase and increase composability of software development.
+
+Do not make a library containing an object model - doing this indicates that software architecture is veering towards a
+rigid canonical model due to applications being too coupled together.
 
 ---
 
