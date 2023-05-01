@@ -175,7 +175,7 @@ class NoSQLCustomerRepository implements CustomerRepository {}
 
 ### Applications
 
-Applications are codebases that, when built, result in an deployable piece of software. This can take the form of
+Applications are codebases that, when built, result in a deployable piece of software. This can take the form of
 services, microservices, daemons, desktop apps, mobile apps.
 
 Applications should be named after their purpose, as a role, in the singular - using kebab-case.
