@@ -8,7 +8,7 @@ A set of language-agnostic coding guidelines.
     - [Variables](#variables)
     - [Functions and methods](#functions-and-methods)
     - [Classes and Structures](#classes-and-structures)
-    - Application / Service naming
+    - [Applications](#applications)
 - Splitting code
     - Package structure
     - File structure
@@ -44,8 +44,8 @@ represent. Representing a car? Call it a car. _Opening_ a bank account? Don't "c
 That way, everyone's on the same page with what process is happening, and new developers with no knowledge can
 understand both the product & technical context in the same way.
 
-Many names can be fancy or fun, but eventually someone else will need to understand your code, and accurate names are
-much more clear. No cute names.
+No cute names - many names can be fancy or fun, but eventually someone else will need to understand your code, and
+accurate names are much more clear ("Cute" names are only for product names, for SEO/marketing purposes).
 
 ### Variables
 
@@ -172,6 +172,36 @@ interface CustomerRepository {}
 class SQLCustomerRepository implements CustomerRepository {}
 class NoSQLCustomerRepository implements CustomerRepository {}
 ```
+
+### Applications
+
+Applications are codebases that, when built, result in an deployable piece of software. This can take the form of
+services, microservices, daemons, desktop apps, mobile apps.
+
+Applications should be named after their purpose, as a role, in the singular - using kebab-case.
+
+As aforementioned in the [general guidelines for naming things](#naming-things), fun/fancy/cute names are very tempting
+for applications. However, this will result in poor discoverability for your application within your organisation's SCM
+and tooling, and will obscure the purpose of the application from fellow developers and consumers.  
+Even with a "cute" product name, name your applications with simple, functional, accurate names.
+
+Example: Building a Product / System for viewing media on consumer devices (laptops, mobiles) with optional, paid-for,
+streaming functionality.
+
+Application names should be along the lines of:
+
+- `desktop-app`
+- `android-app`, `ios-app` / `mobile-app` - depending on mobile app implementation
+    - You could call these `-client`s rather than `-app`s, but I'd say `-app` is the more widely-used term.
+- `account-manager`
+- `stream-provider`
+- `invoice-generator`
+- `payment-processor`
+- `av1-encoder`
+- etc.
+
+Just looking at those application names, you get the feel of how the system is split up, and what each application is
+doing, right? That's a sign your naming your applications well.
 
 ---
 
