@@ -4,7 +4,7 @@ A set of language-agnostic coding guidelines.
 
 ## Contents
 
-- [Naming Things](#naming-things)
+- [Naming things](#naming-things)
     - [Variables](#variables)
     - [Functions and methods](#functions-and-methods)
     - [Classes and Structures](#classes-and-structures)
