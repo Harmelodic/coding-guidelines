@@ -14,18 +14,18 @@ A set of language-agnostic coding guidelines.
     - [Package structure](#package-structure)
     - [Breaking into separate projects](#breaking-into-separate-projects)
     - [Creating libraries](#creating-libraries)
-- Patterns & Anti-Patterns
+- Patterns
     - Dependency Injection
     - Layers
-    - Constructor vs. Builder
-    - Immutable vs. Mutable
+    - Constructor versus Builder
+    - Immutable versus Mutable
     - Composition over inheritance
 - Testing
-    - Why you should do it
+    - Do it
     - Don't monkey-patch
 - Indentation
-    - Tabs vs. Spaces
-- Comments / Code-clarity
+    - Tabs versus Spaces
+- Comments and Code-clarity
 - My preferences
 
 ## Naming things
@@ -33,9 +33,9 @@ A set of language-agnostic coding guidelines.
 Good names convey information to developers. Poor names convey little to no information, or worse, can mislead
 developers.
 
-This usually means that you want the name to be long enough to convey meaning to the developer, but concise enough to
-make the code quick to read. Too long and the developer is reading a book. Too short and they're reading algebra. We
-want neither. We want coherent code.  
+This usually means that the name should be long enough to convey meaning to the developer, but concise enough to make
+the code quick to read. Too long and the developer is reading a book. Too short and they're reading algebra. We want
+neither. We want coherent code.  
 If in doubt, opt for a clearer, verbose name over an obscure, short one. This allows for developers who are new the
 codebase (or even programming language) to more easily understand what is going on.
 
@@ -44,7 +44,7 @@ represent. Representing a car? Call it a car. _Opening_ a bank account? Don't "c
 That way, everyone's on the same page with what process is happening, and new developers with no knowledge can
 understand both the product & technical context in the same way.
 
-No cute names - many names can be fancy or fun, but eventually someone else will need to understand your code, and
+No cute names - many names can be fancy or fun, but eventually someone else will need to understand the code, and
 accurate names are much more clear ("Cute" names are only for product names, for SEO/marketing purposes).
 
 ### Variables
@@ -55,15 +55,15 @@ Never use abbreviated variable names (e.g. `b`, `fr`, `svc`), unless it's an ind
 modern languages have alternative iteration choices where the index is unnecessary (e.g. `forEach(...)`
 and `for ... in`).
 
-In cases where you're storing data that has units, either ensure the variable is using a type that has units as part
-of the type, or put the units in the variable name.
+When the data has units, either ensure the variable is using a type that has units as part of the type, or put the units
+in the variable name.
 
 I have no solid opinion on whether acronyms should be capitalised in variables names, other than a simple: "Do what
 reads better."
 
 ```
 f.readAll(); // poor
-file.readAll(); // okay
+file.readAll(); // poor
 clearingFile.readAll(); // good
 clearingFileToSendToAccountingDepartment.readAll(); // probably too much
 
@@ -92,10 +92,12 @@ name, parameters & return type are the contract/interface of that function to co
 does not, and should not, care about the implementation (sorting algorithm, way of processing something), unless the
 function provides them with a means to affect the implementation (a lambda or flag).
 
-If the function takes a parameter of a particular type, you probably don't need to specify the type in the function
-name - unless you're working in a language that has no support for overloading.
+If the function takes a parameter of a particular type, the type doesn't need to be in the function name - unless the
+language has no support for [overloading](https://en.wikipedia.org/wiki/Function_overloading).
 
-Avoid irrelevant jargon - e.g. `curry()` (Sorry, functional programmers/mathematicians).
+Avoid irrelevant, overly-technical jargon, even if they already exist in a programming context e.g. `curry()`,
+`malloc()` or `diff()`. This confuses and creates a steeper learning-curve for developers to be able to contribute to
+the code.
 
 ```
 int sumDigs(int number) {} // poor
@@ -113,9 +115,9 @@ list.sort(() -> {...}); // good, given it is supported
 
 ### Classes and structures
 
-Classes, structures, structs (hereafter: "classes") define blueprints for how you may want to structure a data
-together. Depending on the language, these classes can also contain "methods", which provide functionality relating
-to the class (see: [Object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming)).
+Classes, structures, structs (hereafter: "classes") define blueprints for creating "objects". Depending on the language,
+these classes can also contain "methods", which provide functionality relating to the class
+(see: [Object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming)).
 
 Classes should come in two varieties: Data classes, and Application classes (if doing OOP).
 
@@ -127,7 +129,7 @@ given the option: opt for making class names in PascalCase.
 If the language offers an option for handling data classes, (Java Records, Python dataclasses, Kotlin data classes,
 etc.), then use it - it will make usability of the code much more consistent.
 
-If you're using Java, avoid Lombok and use Java Records.
+If using Java, avoid Lombok and use Java Records.
 
 ```java
 // Java
@@ -147,7 +149,7 @@ class ApplicationForm:
 
 Application classes, in OOP, would be classes that perform functionality. These often don't contain data themselves, but
 instead contain references to other Application classes (through dependency injection). Exceptions to this are
-applicable, e.g. When you're using
+applicable, e.g. When using
 the [MVVM application architecture](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel).  
 Application classes should be named after their functionality, as a Role, in the singular.
 
@@ -156,12 +158,12 @@ in languages like Java. However, too short or vague names here can obscure or hi
 should have when developing on the code. If in doubt, opt for a more verbose name than a less verbose one to ensure that
 developers new to the codebase can acquire all the necessary information they need to understand the code.
 
-Assuming your using some sort of interface-class relationship in your OOP code, your interface should be named clearly,
-and the class should then be named relating more to the implementation of the interface.
+When using an interface-class relationship in OOP code, interfaces should be named clearly but abstractly, and the class
+should then be named relating more to the implementation of the interface.
 
-If you're only implementing a single class implementing the interface, the interface can be omitted and the class can be
-named as whatever the interface was going to be called, as your class and method signatures effectively become your
-interface, and the contents of the class & methods become your implementation.
+When a single class is implementing the interface, the interface can be omitted and the class can be named as whatever
+the interface was going to be called, as the class and method signatures effectively become the interface, and the
+contents of the class & methods become the implementation.
 
 ```java
 class WikipediaApiClient {}
@@ -181,9 +183,9 @@ services, microservices, daemons, desktop apps, mobile apps.
 Applications should be named after their purpose, as a role, in the singular - using kebab-case.
 
 As aforementioned in the [general guidelines for naming things](#naming-things), fun/fancy/cute names are very tempting
-for applications. However, this will result in poor discoverability for your application within your organisation's SCM
+for applications. However, this will result in poor discoverability for the application within the organisation's SCM
 and tooling, and will obscure the purpose of the application from fellow developers and consumers.  
-Even with a "cute" product name, name your applications with simple, functional, accurate names.
+Even with a "cute" product name, name the applications with simple, functional, accurate names.
 
 Example: Building a Product / System for viewing media on consumer devices (laptops, mobiles) with optional, paid-for,
 streaming functionality.
@@ -192,7 +194,7 @@ Application names should be along the lines of:
 
 - `desktop-app`
 - `android-app`, `ios-app` / `mobile-app` - depending on mobile app implementation
-    - You could call these `-client`s rather than `-app`s, but I'd say `-app` is the more widely-used term.
+    - These could be called `client`s rather than `app`s, but `app` is the more widely-used term.
 - `account-manager`
 - `stream-provider`
 - `invoice-generator`
@@ -200,12 +202,11 @@ Application names should be along the lines of:
 - `av1-encoder`
 - etc.
 
-Just looking at those application names, you get the feel of how the system is split up, and what each application is
-doing, right? That's a sign your naming your applications well.
+With these application names, it is clear how the system is split up, and what each application is doing.
 
 ## Splitting code
 
-Keeping all your code in one file can be good for little scripts or very small programs, but code will eventually reach
+Keeping all the code in one file can be good for little scripts or very small programs, but code will eventually reach
 the point where it is much more maintainable to have the code organised into multiple files, packages, or even projects.
 
 Never have a file/package/project named "utils" or "utilities". If this feels appropriate, code is either being split or
