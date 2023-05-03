@@ -14,12 +14,10 @@ A set of language-agnostic coding guidelines.
     - [Package structure](#package-structure)
     - [Breaking into separate projects](#breaking-into-separate-projects)
     - [Creating libraries](#creating-libraries)
-- Patterns
-    - Dependency Injection
-    - Layers
-    - Constructor versus Builder
-    - Immutable versus Mutable
-    - Composition over inheritance
+- [Patterns](#patterns)
+    - [Constructor versus Builder](#constructor-versus-builder)
+    - [Immutable versus Mutable](#immutable-versus-mutable)
+    - [Composition over inheritance](#composition-over-inheritance)
 - Testing
     - Do it
     - Don't monkey-patch
@@ -138,13 +136,13 @@ record Customer() {}
 
 ```kotlin
 // Kotlin
-data class Account {}
+data class Customer {}
 ```
 
 ```python
 # Python
 @dataclass
-class ApplicationForm:
+class Customer:
 ```
 
 Application classes, in OOP, would be classes that perform functionality. These often don't contain data themselves, but
@@ -165,14 +163,22 @@ When a single class is implementing the interface, the interface can be omitted 
 the interface was going to be called, as the class and method signatures effectively become the interface, and the
 contents of the class & methods become the implementation.
 
+Never prefix interfaces with `I`, or add `Impl` to implementations, or do other things like this.
+
+Use patterns to make your classes work together better, especially within OOP and languages lacking features.
+
 ```java
-class WikipediaApiClient {}
+// poor
+interface IAccountRepository {}
+class AccountRepositoryImpl implements IAccountRepository {}
 
-class ApplicationFormValidator {}
+// good
+class AccountRepository {}
 
-interface CustomerRepository {}
-class SQLCustomerRepository implements CustomerRepository {}
-class NoSQLCustomerRepository implements CustomerRepository {}
+// also good, if multiple implementations needed
+interface AccountRepository {}
+class SQLAccountRepository implements AccountRepository {}
+class NoSQLAccountRepository implements AccountRepository {}
 ```
 
 ### Applications
@@ -253,6 +259,42 @@ reduce complexity in the codebase and increase composability of software develop
 
 Do not make a library containing an object model - doing this indicates that software architecture is veering towards a
 rigid canonical model due to applications being too coupled together.
+
+## Patterns
+
+We don't want to reinvent the wheel every time we develop something. Patterns are the wheels that have been invented
+along the way, so we can write code that is easier to maintain, easier to test, easier to extend.
+
+You can find various sources for lists of software and architectural design patterns. Here are some patterns that I've
+observed being used _a lot_ and think are good:
+
+- Dependency Injection
+- Inversion of Control
+- Layers
+    - Front Controller
+    - Service Layer
+    - Repository (or DAO)
+
+### Constructor versus Builder
+
+Implementation of Builders have been hit-and-miss.
+
+Modern IDEs inform us of the representation of objects.
+
+Constructors can be overloaded, and provide a clean way to restrict invalid ways to construct objects.
+
+### Immutable versus Mutable
+
+Aim for immutability unless you _really_ need something mutable.
+
+### Composition over inheritance
+
+Use composition instead of inheritance when constructing object models - it results in greater flexibility in the
+codebase and model design.
+
+Inheritance can be implemented when it makes sense, often when there are some "abstract" methods as part of a parent
+class.
+
 
 ---
 
