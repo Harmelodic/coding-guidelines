@@ -2,6 +2,10 @@
 
 A set of language-agnostic coding guidelines.
 
+## Before you write code
+
+Spend more time thinking about what is needed, than writing code. When code is eventually written, write it well.
+
 ## Contents
 
 - [Naming things](#naming-things)
@@ -51,6 +55,8 @@ and `for ... in`).
 
 When the data has units, either ensure the variable is using a type that has units as part of the type, or put the units
 in the variable name.
+
+Never re-use variables, unless you need to as a last resort for optimisation reasons.
 
 I have no solid opinion on whether acronyms should be capitalised in variables names, other than a simple: "Do what
 reads better."
@@ -220,7 +226,7 @@ Split code into components. One component per file.
 This does not have to be OOP-styled, assuming the codebase/language doesn't work with OOP principles, but breaking
 applications up into components and layers delegates responsibility across the codebase and increases maintainability.
 
-### Package structure
+### Project structure
 
 Package by feature, not by layer.  
 This increases the decoupling and modularity of the project, by isolating features and allowing developers to work
@@ -326,6 +332,15 @@ To ensure that developers are given the accessibility choice, use tabs.
 Instead of writing comments, make the code readable.
 
 If the code cannot be made readable, write a concise comment.
+
+### Versioning
+
+All code should be in version control.
+
+Use Semantic Versioning in releases.
+
+Commit messages should concisely describe the change, and if it is not clear or documented elsewhere: why the change is
+needed.
 
 ---
 
