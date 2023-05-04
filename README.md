@@ -18,13 +18,9 @@ A set of language-agnostic coding guidelines.
     - [Constructor versus Builder](#constructor-versus-builder)
     - [Immutable versus Mutable](#immutable-versus-mutable)
     - [Composition over inheritance](#composition-over-inheritance)
-- Testing
-    - Do it
-    - Don't monkey-patch
-- Indentation
-    - Tabs versus Spaces
-- Comments and Code-clarity
-- My preferences
+- [Testing](#testing)
+- [Indentation](#indentation)
+- [Comments and code-clarity](#comments-and-code-clarity)
 
 ## Naming things
 
@@ -295,6 +291,41 @@ codebase and model design.
 Inheritance can be implemented when it makes sense, often when there are some "abstract" methods as part of a parent
 class.
 
+## Testing
+
+Tests prove that code functions correctly, under a set of stated expectations. Without tests, it cannot be reasonably
+proved that code functions correctly.
+
+Write the following, where appropriate:
+
+- Unit Tests
+- Integration Tests
+    - inc. Contract tests
+- Performance Tests
+- Security Tests
+- UI Tests
+- Key E2E tests
+
+Stick to [The Practical Test Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html)
+
+### Indentation
+
+TL;DR - Use tabs.
+
+Indentation is designed to assist readability by showing what code sits within other code - i.e. the contents of a
+function, class, etc.
+
+Different developers find some indentations too large or too big, based on preference or legibility. Therefore, the
+question of "tabs vs spaces" is ultimately an accessibility question. In monospaced fonts, tab size is configurable,
+space size is not.
+
+To ensure that developers are given the accessibility choice, use tabs.
+
+### Comments and code-clarity
+
+Instead of writing comments, make the code readable.
+
+If the code cannot be made readable, write a concise comment.
 
 ---
 
