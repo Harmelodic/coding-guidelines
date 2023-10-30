@@ -25,6 +25,7 @@ Spend more time thinking about what is needed, than writing code. When code is e
 - [Testing](#testing)
 - [Indentation](#indentation)
 - [Comments and code-clarity](#comments-and-code-clarity)
+- [Versioning](#versioning)
 
 ## Naming things
 
@@ -37,10 +38,11 @@ neither. We want coherent code.
 If in doubt, opt for a clearer, verbose name over an obscure, short one. This allows for developers who are new the
 codebase (or even programming language) to more easily understand what is going on.
 
-I quite like Domain-Driven Design. To summarise poorly, we should name things according to the real thing they
-represent. Representing a car? Call it a car. _Opening_ a bank account? Don't "create" it, "open" it.  
-That way, everyone's on the same page with what process is happening, and new developers with no knowledge can
-understand both the product & technical context in the same way.
+In Domain-Driven Design, there is a concept called "Ubiquitous Language". To summarise it for the purpose of these
+coding guidelines, we should name things according to the real thing they represent. Representing a car? Call it a car.
+_Opening_ a bank account? Don't "create" it, "open" it.  
+That way, all stakeholders (even non-developers) are on the same page with what process is happening, and new developers
+with no knowledge can understand both the product & technical context in the same way.
 
 No cute names - many names can be fancy or fun, but eventually someone else will need to understand the code, and
 accurate names are much more clear ("Cute" names are only for product names, for SEO/marketing purposes).
@@ -123,9 +125,9 @@ Classes should come in two varieties: Data classes, and Application classes (if 
 
 Data classes are, by their name, classes which define a data structure, and should be named after the structure of data
 they represent, as a singular. If that data structure exists in the real world (outside of code) then opt to name it
-that to further a Ubiquitous Language.  
-Depending on the language, class names can have different requirement for casings, but general if
-given the option: opt for making class names in PascalCase.
+that to further a Ubiquitous Language (re: Domain-Design Design).  
+Depending on the language, class names can have different requirement for casings, but general if given the option: opt
+for making class names in PascalCase.
 If the language offers an option for handling data classes, (Java Records, Python dataclasses, Kotlin data classes,
 etc.), then use it - it will make usability of the code much more consistent.
 
@@ -148,8 +150,7 @@ class Customer:
 ```
 
 Application classes, in OOP, would be classes that perform functionality. These often don't contain data themselves, but
-instead contain references to other Application classes (through dependency injection). Exceptions to this are
-applicable, e.g. When using
+instead contain references to other Application classes. Exceptions to this are applicable, e.g. When using
 the [MVVM application architecture](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel).  
 Application classes should be named after their functionality, as a Role, in the singular.
 
@@ -167,7 +168,8 @@ contents of the class & methods become the implementation.
 
 Never prefix interfaces with `I`, or add `Impl` to implementations, or do other things like this.
 
-Use patterns to make your classes work together better, especially within OOP and languages lacking features.
+Use patterns, like Dependency Injection, to make your classes work together better and be easier to test, especially
+within OOP and languages lacking features.
 
 ```java
 // poor
