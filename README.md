@@ -168,9 +168,6 @@ contents of the class & methods become the implementation.
 
 Never prefix interfaces with `I`, or add `Impl` to implementations, or do other things like this.
 
-Use patterns, like Dependency Injection, to make your classes work together better and be easier to test, especially
-within OOP and languages lacking features.
-
 ```java
 // poor
 interface IAccountRepository {}
@@ -281,11 +278,14 @@ observed being used _a lot_ and think are good:
 
 ### Constructor versus Builder
 
-Implementation of Builders have been hit-and-miss.
+Generally, prefer Constructors to Builders.
 
-Modern IDEs inform us of the representation of objects.
+Implementation of Builders have been hit-and-miss and poor builder implementations can result in objects being created
+that should not be allowed (e.g. values being null that shouldn't be). Builders are sometimes used to show the
+representation of objects upon construction, however modern IDEs can inform us of the representation of objects.
 
-Constructors can be overloaded, and provide a clean way to restrict invalid ways to construct objects.
+Since constructors can be overloaded, and provide a clean way to restrict invalid ways to construct objects, and are a
+well-known, conventional language feature in Object-Oriented languages.
 
 ### Immutable versus Mutable
 
@@ -312,9 +312,13 @@ Write the following, where appropriate:
 - Performance Tests
 - Security Tests
 - UI Tests
-- Key E2E tests
 
-Stick to [The Practical Test Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html)
+Don't write integrated tests.
+
+Generally, stick to [The Practical Test Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html)
+
+Use mocks/stubs/spies/etc. in place of system components that aren't being tested but are required to be present for the
+test to function.
 
 ### Indentation
 
