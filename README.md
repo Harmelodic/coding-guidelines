@@ -9,19 +9,19 @@ Spend more time thinking about what is needed, than writing code. When code is e
 ## Contents
 
 - [Naming things](#naming-things)
-    - [Variables](#variables)
-    - [Functions and methods](#functions-and-methods)
-    - [Classes and Structures](#classes-and-structures)
-    - [Applications](#applications)
+	- [Variables](#variables)
+	- [Functions and methods](#functions-and-methods)
+	- [Classes and Structures](#classes-and-structures)
+	- [Applications](#applications)
 - [Splitting code](#splitting-code)
-    - [File structure](#file-structure)
-    - [Package structure](#package-structure)
-    - [Breaking into separate projects](#breaking-into-separate-projects)
-    - [Creating libraries](#creating-libraries)
+	- [File structure](#file-structure)
+	- [Package structure](#package-structure)
+	- [Breaking into separate projects](#breaking-into-separate-projects)
+	- [Creating libraries](#creating-libraries)
 - [Patterns](#patterns)
-    - [Constructor versus Builder](#constructor-versus-builder)
-    - [Immutable versus Mutable](#immutable-versus-mutable)
-    - [Composition over inheritance](#composition-over-inheritance)
+	- [Constructor versus Builder](#constructor-versus-builder)
+	- [Immutable versus Mutable](#immutable-versus-mutable)
+	- [Composition over inheritance](#composition-over-inheritance)
 - [Testing](#testing)
 - [Indentation](#indentation)
 - [Comments and code-clarity](#comments-and-code-clarity)
@@ -60,6 +60,10 @@ in the variable name.
 
 Never re-use variables, unless you need to as a last resort for optimisation reasons.
 
+Opt for statically-typed languages, and static-typing in those languages - especially for languages that contain
+business logic (to be able to easily a Domain model using types, and easily create Value types) and / or safety is a
+concern (for increased "shift-left" due to compile-time type safety).
+
 I have no solid opinion on whether acronyms should be capitalised in variables names, other than a simple: "Do what
 reads better."
 
@@ -78,10 +82,10 @@ CustomerRepository r, // poor
                    customerRepository, // good
                    customerDatabaseRepository; // too much
 
-var tlsRoute; // fine
-var TLSRoute; // I "feel" this is less readable.
-var accountApi; // fine
-var accountAPI; // I "feel" this is more readable.
+URL tlsRoute; // fine
+URL TLSRoute; // I "feel" this is less readable.
+URL accountApi; // fine
+URL accountAPI; // I "feel" this is more readable.
 ```
 
 ### Functions and methods
@@ -135,7 +139,8 @@ If using Java, avoid Lombok and use Java Records.
 
 ```java
 // Java
-record Customer() {}
+record Customer() {
+}
 ```
 
 ```kotlin
@@ -170,16 +175,25 @@ Never prefix interfaces with `I`, or add `Impl` to implementations, or do other 
 
 ```java
 // poor
-interface IAccountRepository {}
-class AccountRepositoryImpl implements IAccountRepository {}
+interface IAccountRepository {
+}
+
+class AccountRepositoryImpl implements IAccountRepository {
+}
 
 // good
-class AccountRepository {}
+class AccountRepository {
+}
 
 // also good, if multiple implementations needed
-interface AccountRepository {}
-class SQLAccountRepository implements AccountRepository {}
-class NoSQLAccountRepository implements AccountRepository {}
+interface AccountRepository {
+}
+
+class SQLAccountRepository implements AccountRepository {
+}
+
+class NoSQLAccountRepository implements AccountRepository {
+}
 ```
 
 ### Applications
@@ -201,7 +215,7 @@ Application names should be along the lines of:
 
 - `desktop-app`
 - `android-app`, `ios-app` / `mobile-app` - depending on mobile app implementation
-    - These could be called `client`s rather than `app`s, but `app` is the more widely-used term.
+	- These could be called `client`s rather than `app`s, but `app` is the more widely-used term.
 - `account-manager`
 - `stream-provider`
 - `invoice-generator`
@@ -272,9 +286,9 @@ observed being used _a lot_ and think are good:
 - Dependency Injection
 - Inversion of Control
 - Layers
-    - Front Controller
-    - Service Layer
-    - Repository (or DAO)
+	- Front Controller
+	- Service Layer
+	- Repository (or DAO)
 
 ### Constructor versus Builder
 
@@ -308,7 +322,7 @@ Write the following, where appropriate:
 
 - Unit Tests
 - Integration Tests
-    - inc. Contract tests
+	- inc. Contract tests
 - Performance Tests
 - Security Tests
 - UI Tests
